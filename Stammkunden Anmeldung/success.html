@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1">
+    <title>Willkommen im Bonusprogramm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="success-page" id="successMain">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16" style="color:#57b46c">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </svg>
+        <h1>Vielen Dank f&uuml;r deine Anmeldung!</h1>
+        <div class="text-container">
+            <p>Wir freuen uns, das du Teil unseres Bonusprogramm bist! Es warten viele tolle Vorteile auf dich.</p><br />
+            <div id="infomail-container">
+            </div>
+            <h2 style="text-align: left;"><strong>Wie geht es jetzt weiter?</strong></h2>
+            <hr />
+            <ol>
+                <li>Du erh&auml;ltst deine Kundenkarte innerhalb von 2-4 Wochen&nbsp;</li>
+                <li>Um auch jetzt schon deinen Sofort-Rabatt zu erhalten, zeige deine Anmeldebest&auml;tigung an der Kasse vor. Diese m&uuml;sste sich bereits in deinem Posteingang befinden.&nbsp;</li>
+                <li>Fertig!</li>
+            </ol>
+        </div>
+    </div>
+    <template id="infomail-content">
+        <h2>Infomail abonnieren</h2>
+        <hr />
+        <p>M&ouml;chtest du immer als erster &uuml;ber <strong>Aktionen, Sales, Events</strong> und <strong>neue Outdoor-Kollektionen</strong> informiert werden? Dann registriere dich auch f&uuml;r unsere Stammkunden-Infomail.</p>
+        <div id="button-container">
+            <button class="ctaButton" onclick="sendCleverReachData()">Jetzt anmelden</button>
+            <p style="font-size: 10pt;">Bitte beachte die <a href="https://sport-praxenthaler.com/custom/index/sCustom/85" target="_blank">Informationen zum Newsletter</a>.</p>
+        </div>
+        <p>&nbsp;</p>
+    </template>
+    <template id="infomail-success">
+        <div id="infomail-success-text">
+            <p><strong>Nur noch ein Schritt!</strong> Um die Anmeldung abzuschließen, klicke bitte auf den Link in der E-Mail, die wir soeben an dich gesendet haben.</p>
+        </div>  
+    </template>
+    <script src="script-success.js"></script>
+</body>
+</html>
