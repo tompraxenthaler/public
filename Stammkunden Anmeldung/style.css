@@ -121,6 +121,11 @@ input.required:valid, select.required:valid {
     border-left: 4px solid #57b46c;
 }
 
+.invalid {
+    border: 1px solid red;
+    background-color: #cd565437;
+}
+
 input:focus {
     background-color: #fff;
 }

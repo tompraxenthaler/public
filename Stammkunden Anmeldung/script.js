@@ -65,6 +65,46 @@ document.getElementById("anrede").addEventListener("input", () => {
     }
 });
 
+//////////////////////////
+// Geburtsdatum überprüfen
+//////////////////////////
+const tag = document.getElementById("tag");
+const monat = document.getElementById("monat");
+const jahr = document.getElementById("jahr");
+
+tag.addEventListener("blur", () => {
+    if (tag.value > 31) {
+        tag.value = "";
+        tag.className = "invalid";
+    } else {
+        tag.className = "valid";
+        if (tag.value.length < 2) {
+            tag.value = "0" + tag.value;
+        }}
+    }
+);
+
+monat.addEventListener("blur", () => {
+        if (monat.value > 12) {
+            monat.value = "";
+            monat.className = "invalid";
+        } else {
+            monat.className = "valid";
+            if (monat.value.length < 2) {
+                monat.value = "0" + monat.value;
+            }}
+        }
+);
+
+jahr.addEventListener("blur", () => {
+        if (jahr.value > 2023 || jahr.value < 1900) {
+            jahr.value = "";
+            jahr.className = "invalid";
+        } else {
+            jahr.className = "valid";
+        }
+    });
+
 /////////////////////
 // SendMail Funktion
 /////////////////////
@@ -94,16 +134,19 @@ function sendMail () {
         ort: document.getElementById("ort").value,
         land: document.getElementById("land").value,
         telefon: document.getElementById("telefon").value,
-        geburtsdatum: document.getElementById("geburtstag").value,
-        tag: "",
-        monat: "",
-        jahr: "",
+        tag: document.getElementById("tag").value,
+        monat: document.getElementById("monat").value,
+        jahr: document.getElementById("jahr").value,
+        geburtsdatum: "",
         sportarten: sportartenSelected,
     };
-    var geburtsdatumSplit = parameters.geburtsdatum.split("-");
-    parameters.jahr = geburtsdatumSplit[0];
-    parameters.monat = geburtsdatumSplit[1];
-    parameters.tag = geburtsdatumSplit[2];
+
+    parameters.geburtsdatum = parameters.jahr + "-" + parameters.monat + "-" + parameters.tag;
+    // Nicht mehr notwendig, wenn Geburtstag 3-geteilt:
+    // var geburtsdatumSplit = parameters.geburtsdatum.split("-");
+    // parameters.jahr = geburtsdatumSplit[0];
+    // parameters.monat = geburtsdatumSplit[1];
+    // parameters.tag = geburtsdatumSplit[2];
 
     switch (parameters.anrede) {
         case "Herr": geschlecht = "männlich";
@@ -122,7 +165,6 @@ function sendMail () {
     }
 
     console.log(parameters);
-    console.log(parameters.vorname);
     optin = document.getElementById("optin");
     console.log("Opt-In:" + optin.checked);
 
@@ -133,7 +175,7 @@ function sendMail () {
     // Bestätigung an Kunden
     const serviceId1 = "service_vawz19v";
     const templateId1 = "template_cjv4nfe";
-    const publicKey1 = "shonANTuR2xK5mQ0Q";
+    // const publicKey1 = "shonANTuR2xK5mQ0Q";
 
     emailjs.send(serviceId1, templateId1, parameters)
         .then(function (response) {
@@ -199,7 +241,9 @@ function sendMail () {
     document.getElementById("ort").value = "";
     document.getElementById("land").value = "";
     document.getElementById("telefon").value = "";
-    document.getElementById("geburtstag").value = "";
+    document.getElementById("tag").value = "";
+    document.getElementById("monat").value = "";
+    document.getElementById("jahr").value = "";
     for (var i = 0; i < sportartCheckboxes.length; i++) {
         sportartCheckboxes[i].checked = false;
     }
