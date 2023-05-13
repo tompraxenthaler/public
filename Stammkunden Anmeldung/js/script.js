@@ -309,7 +309,7 @@ function sendMail () {
     ///////////////////////////////////////////////////////////////////////
     // Öffnen der Success Page nach Absenden (inkl URl Parameter für Email)
     ///////////////////////////////////////////////////////////////////////
-    var newWindow = window.open("", "_self");
+    var newWindow = window.open("", "_blank");
 
     newWindow.location.href = sucessUrl;
     };
