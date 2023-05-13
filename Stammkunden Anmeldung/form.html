@@ -30,7 +30,7 @@
                 </select>
                 <p></p>
                 <select id="titel" name="titel">
-                    <option value="" selected disabled>Titel</option>
+                    <option value="" selected>Titel</option>
                     <option value="Dr.">Dr.</option>
                     <option value="Prof.">Prof.</option>
                     <option value="Prof. Dr.">Prof. Dr.</option>
@@ -71,11 +71,11 @@
             <input type="tel" name="telefon" id="telefon" placeholder="Telefonnummer">
             <div id="geburtstag-container">
                 <span id="geburtstag-label">Geburtsdatum</span>
-                <input type="number" name="tag" id="tag" placeholder="TT">
+                <input type="number" maxlength="2" name="tag" id="tag" placeholder="TT">
                 <p></p>
-                <input type="number" name="monat" id="monat" placeholder="MM">
+                <input type="number" maxlength="2" name="monat" id="monat" placeholder="MM">
                 <p></p>
-                <input type="number" name="jahr" id="jahr" placeholder="JJJJ">
+                <input type="number" maxlength="2" name="jahr" id="jahr" placeholder="JJJJ">
                 <!-- <input type="date" name="geburtstag" id="geburtstag" placeholder="geburtstag"> -->
             </div>
             <div id="sportarten-border">
@@ -163,10 +163,10 @@
                 <span class="closeElement">
                     <a href="#collapseText" onclick="collapseElement('collapseText')">&#x2715</a>
                 </span>
-                <p><strong>Klassische Kundenkarte</strong><br/>Plastikkarte im Scheckkartenformat per Post.</p>
-                <p><strong>Digitale Kundenkarte</strong><br/>Digitale Karte für deine Apple oder Google Wallet per E-Mail.</p>
+                <p><strong>Klassische Kundenkarte</strong><br/>Plastikkarte im Scheckkartenformat. Zustellung per Post.</p>
+                <p><strong>Digitale Kundenkarte</strong><br/>Digitale Karte für deine Apple oder Google Wallet. Zustellung per E-Mail.</p>
             </div>
-            <select name="kundenkarte" id="kundenkarte" required>
+            <select name="kundenkarte" id="kundenkarte" class="required" required>
                 <option value="" selected disabled>Form der Kundenkarte*</option>
                 <option value="Klassische Kundenkarte per Post">Klassische Kundenkarte</option>
                 <option value="Digitale Kundenkarte per E-Mail">Digitale Kundenkarte</option>

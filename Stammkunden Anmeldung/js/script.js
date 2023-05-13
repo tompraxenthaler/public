@@ -69,15 +69,15 @@ document.getElementById("anrede").addEventListener("input", () => {
     }
 });
 
-//////////////////////////
-// Geburtsdatum überprüfen
-//////////////////////////
+///////////////////////////////////////////////////
+// Geburtsdatum überprüfen bei Verlassen des Inputs
+///////////////////////////////////////////////////
 const tag = document.getElementById("tag");
 const monat = document.getElementById("monat");
 const jahr = document.getElementById("jahr");
 
 tag.addEventListener("blur", () => {
-    if (tag.value > 31) {
+    if (tag.value > 31 || tag.value < 1) {
         tag.value = "";
         tag.className = "invalid";
     } else {
@@ -85,11 +85,16 @@ tag.addEventListener("blur", () => {
         if (tag.value.length < 2) {
             tag.value = "0" + tag.value;
         }}
+});
+
+tag.addEventListener("input", () => {
+    if (tag.value.length == "2") {
+        monat.focus();
     }
-);
+});
 
 monat.addEventListener("blur", () => {
-        if (monat.value > 12) {
+        if (monat.value > 12 || monat.value < 1) {
             monat.value = "";
             monat.className = "invalid";
         } else {
@@ -97,8 +102,13 @@ monat.addEventListener("blur", () => {
             if (monat.value.length < 2) {
                 monat.value = "0" + monat.value;
             }}
-        }
-);
+});
+
+monat.addEventListener("input", () => {
+    if (monat.value.length == "2") {
+        jahr.focus();
+    }
+});
 
 jahr.addEventListener("blur", () => {
         if (jahr.value > 2023 || jahr.value < 1900) {
@@ -107,7 +117,45 @@ jahr.addEventListener("blur", () => {
         } else {
             jahr.className = "valid";
         }
-    });
+});
+
+jahr.addEventListener("input", () => {
+    if (jahr.value.length == "4") {
+        jahr.blur();
+        // document.getElementById("alpinski").focus();
+    }
+});
+
+//////////////////////////////////////////
+// Non-required Felder als valid markieren
+//////////////////////////////////////////
+const titel = document.getElementById("titel");
+const adresszusatz = document.getElementById("adresszusatz");
+const telefon = document.getElementById("telefon");
+
+titel.addEventListener("input", () => {
+    if (titel.value !== "") {
+        titel.className = "valid";
+    } else if (titel.value === "") {
+        titel.className = "";
+    }
+});
+
+adresszusatz.addEventListener("input", () => {
+    if (adresszusatz.value !== "") {
+        adresszusatz.className = "valid";
+    } else if (adresszusatz.value == "") {
+        adresszusatz.className = "";
+    }
+});
+
+telefon.addEventListener("input", () => {
+    if (telefon.value !== "") {
+        telefon.className = "valid";
+    } else if (telefon.value == "") {
+        telefon.className = "";
+    }
+});
 
 /////////////////////
 // SendMail Funktion
@@ -245,20 +293,28 @@ function sendMail () {
     ///////////////////////////
     document.getElementById("anrede").value = "";
     document.getElementById("titel").value = "";
+    document.getElementById("titel").className = "";
     document.getElementById("vorname").value = "";
     document.getElementById("nachname").value = "";
     document.getElementById("email").value = "";
     document.getElementById("optin").checked = false;
+    document.getElementById("optout").checked = false;
     document.getElementById("strasse").value = "";
     document.getElementById("hausnummer").value = "";
     document.getElementById("adresszusatz").value = "";
+    document.getElementById("adresszusatz").className = "";
     document.getElementById("plz").value = "";
     document.getElementById("ort").value = "";
     document.getElementById("land").value = "";
     document.getElementById("telefon").value = "";
+    document.getElementById("telefon").className = "";
     document.getElementById("tag").value = "";
+    document.getElementById("tag").className = "";
     document.getElementById("monat").value = "";
+    document.getElementById("monat").className = "";
     document.getElementById("jahr").value = "";
+    document.getElementById("jahr").className = "";
+    document.getElementById("kundenkarte").value = "";
     for (var i = 0; i < sportartCheckboxes.length; i++) {
         sportartCheckboxes[i].checked = false;
     }
@@ -268,7 +324,7 @@ function sendMail () {
     ///////////////////////////////////////////////////////////////////////
     // Öffnen der Success Page nach Absenden (inkl URl Parameter für Email)
     ///////////////////////////////////////////////////////////////////////
-    var newWindow = window.open("");
+    var newWindow = window.open("", "_self");
 
     newWindow.location.href = sucessUrl;
 };

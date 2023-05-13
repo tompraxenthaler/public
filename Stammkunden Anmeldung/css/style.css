@@ -121,9 +121,15 @@ input[type="text"], [type="email"], [type="number"], [type="tel"], [type="date"]
     border-radius: 3px;
 }
 input.required:valid, select.required:valid {
-    background-color: #fff;
-    color: black;
-    border-left: 4px solid #57b46c;
+    background-color: #fff !important;
+    color: black !important;
+    border-left: 4px solid #57b46c !important;
+}
+
+.valid {
+    background-color: #fff !important;
+    color: black !important;
+    border-left: 4px solid #57b46c !important;
 }
 
 .invalid {
