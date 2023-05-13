@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width", initial-scale=1">
     <title>Anmeldung zum Bonusprogramm</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -156,6 +156,21 @@
                     </div>    
                 </div>
             </div>
+            <div id="kundenkarten-text">M&ouml;chtest du eine klassische oder digitale Kundenkarte?* 
+                <a href="#collapseText" onclick="uncollapseElement('collapseText')">ⓘ</a>
+            </div>
+            <div class="collapse" id="collapseText">
+                <span class="closeElement">
+                    <a href="#collapseText" onclick="collapseElement('collapseText')">&#x2715</a>
+                </span>
+                <p><strong>Klassische Kundenkarte</strong><br/>Plastikkarte im Scheckkartenformat per Post.</p>
+                <p><strong>Digitale Kundenkarte</strong><br/>Digitale Karte für deine Apple oder Google Wallet per E-Mail.</p>
+            </div>
+            <select name="kundenkarte" id="kundenkarte" required>
+                <option value="" selected disabled>Form der Kundenkarte*</option>
+                <option value="Klassische Kundenkarte per Post">Klassische Kundenkarte</option>
+                <option value="Digitale Kundenkarte per E-Mail">Digitale Kundenkarte</option>
+            </select>
             <div class="form-checkbox-text-container">
                 <input type="checkbox" id="consent" required>
                 <label for="consent" class="checkbox-text">Ich habe die <a href="https://sport-praxenthaler.com/custom/index/sCustom/90" target="_blank">Teilnahmebedingungen</a> gelesen und akzeptiere diese.*</label>
@@ -163,7 +178,7 @@
         </div>
         <button id="formButton" type="submit" disabled>Jetzt anmelden</button>
     </form>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
 
