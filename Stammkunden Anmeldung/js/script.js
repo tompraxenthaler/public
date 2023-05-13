@@ -235,51 +235,36 @@ function sendMail () {
     // EmailJS trigger
     ////////////////////////////////////////////
 
-    // Bestätigung an Kunden
-    const serviceId1 = "service_vawz19v";
-    const templateId1 = "template_cjv4nfe";
-    // const publicKey1 = "shonANTuR2xK5mQ0Q";
-
-    emailjs.send(serviceId1, templateId1, parameters)
-        .then(function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-            // document.getElementById("vorname").value = "";
-            // document.getElementById("nachname").value = "";
-            // document.getElementById("email").value = "";
-            // console.log(res);
-            // alert("message sent successfully");
-        },
-        function (error) {
-            console.log("Failed", error);
-        }
-        );
-    
     // Anmeldung an Büro
-    const serviceId2 = "service_vawz19v";
+    const serviceId = "service_vawz19v";
     const templateId2 = "template_5ea91pp";
-    const publicKey2 = "shonANTuR2xK5mQ0Q";
 
-    emailjs.send(serviceId2, templateId2, parameters)
+    emailjs.send(serviceId, templateId2, parameters)
         .then(function (response) {
             console.log('SUCCESS!', response.status, response.text);
-            // document.getElementById("vorname").value = "";
-            // document.getElementById("nachname").value = "";
-            // document.getElementById("email").value = "";
-            // console.log(res);
-            // alert("message sent successfully");
-        },
-        function (error) {
+            
+            // Bestätigung an Kunden
+            const templateId1 = "template_cjv4nfe";
+            emailjs.send(serviceId, templateId1, parameters)
+                .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+                },
+            function (error) {
             console.log("Failed", error);
+            });
+
+            ////////////////////////////////////////////
+            // Bei Opt-in CleverReach Funktion ausführen 
+            ////////////////////////////////////////////
+            if (optin.checked) {
+                console.log("Post CleverReach");
+                sendCleverReachData();
+            };
+            },
+        function (error) {
+                console.log("Failed", error);
         }
         );
-
-    ////////////////////////////////////////////
-    // Bei Opt-in CleverReach Funktion ausführen 
-    ////////////////////////////////////////////
-    if (optin.checked) {
-        console.log("Post CleverReach");
-        sendCleverReachData();
-    };
 
     ////////////////////////////////////
     // Parameter an Success URL anhängen
@@ -327,7 +312,7 @@ function sendMail () {
     var newWindow = window.open("", "_self");
 
     newWindow.location.href = sucessUrl;
-};
+    };
 
 /////////////////////////////////////////////
 // Funktion: Daten an CleverReach übermitteln
@@ -347,7 +332,7 @@ function sendCleverReachData() {
         + "&258001=" + parameters.ort + "&258002=" + parameters.land + "&250767[day]=" + parameters.tag + "&250767[month]=" + parameters.monat + "&250767[year]=" + parameters.jahr + "&258005=" + sportartenSelected + "&258004=" + "Online-Anmeldung";
     xhttp.send(data);
     console.log(data);
-  }
+}
 
 
 /////////////////////////////////////////////
