@@ -16,7 +16,7 @@
 </head>
 <body>
     <form onsubmit="sendMail()" id="htmlForm">
-        <div class="inner-form-container">
+        <div class="inner-form-container" id="innerFormContainer">
             <h1>Anmeldung zum Bonusprogramm</h1>
             <div class="two-col-input">
                 <select id="anrede" name="anrede" class="required" required>
@@ -179,6 +179,11 @@
         <button id="formButton" type="submit" disabled>Jetzt anmelden</button>
     </form>
     <script src="js/script.js"></script>
+    <div id="loaderScreen" hidden>
+        <div class="transparent-black-layer">
+            <div class="loader"></div>
+        </div>
+    </div>
 </body>
 </html>
 

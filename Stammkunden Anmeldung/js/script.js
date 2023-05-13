@@ -164,6 +164,12 @@ function sendMail () {
     event.preventDefault();
 
     ////////////////////////////////////////////
+    // Loading Layer über Formular
+    ////////////////////////////////////////////
+    const loadingLayer = document.getElementById("loaderScreen");
+    loadingLayer.removeAttribute("hidden");
+
+    ////////////////////////////////////////////
     // Parameter und Variablen definieren
     ////////////////////////////////////////////
     sportartCheckboxes = document.getElementsByClassName("sportart-checkbox");
@@ -234,37 +240,50 @@ function sendMail () {
     ////////////////////////////////////////////
     // EmailJS trigger
     ////////////////////////////////////////////
+    var responseStatusAnmeldung = "";
+    var responseStatusConfirmation = "";
+    var responseStatusCleverReach = "";
+
+    var serviceId = "service_vawz19v";
 
     // Anmeldung an Büro
-    const serviceId = "service_vawz19v";
     const templateId2 = "template_5ea91pp";
-
     emailjs.send(serviceId, templateId2, parameters)
+    .then(function (response) {
+        console.log('SUCCESS!', response.status, response.text);
+        if (response.status === 200) {
+            responseStatusAnmeldung = response.status;
+            console.log("Response-Status Anmeldung: " + responseStatusAnmeldung);
+            openSuccess();
+            }
+         },
+        function (error) {
+            console.log("Failed", error);
+        }
+    );
+    
+    // Bestätigung an Kunden
+    const templateId1 = "template_cjv4nfe";
+    emailjs.send(serviceId, templateId1, parameters)
         .then(function (response) {
             console.log('SUCCESS!', response.status, response.text);
-            
-            // Bestätigung an Kunden
-            const templateId1 = "template_cjv4nfe";
-            emailjs.send(serviceId, templateId1, parameters)
-                .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-                },
+            if (response.status === 200) {
+                responseStatusConfirmation = response.status;
+                console.log("Response-Status Confirmation: " + responseStatusConfirmation);
+                openSuccess();
+            }},
             function (error) {
-            console.log("Failed", error);
-            });
-
-            ////////////////////////////////////////////
-            // Bei Opt-in CleverReach Funktion ausführen 
-            ////////////////////////////////////////////
-            if (optin.checked) {
-                console.log("Post CleverReach");
-                sendCleverReachData();
-            };
-            },
-        function (error) {
                 console.log("Failed", error);
-        }
+            }
         );
+
+    ////////////////////////////////////////////
+    // Bei Opt-in CleverReach Funktion ausführen 
+    ////////////////////////////////////////////
+    if (optin.checked) {
+        console.log("Send to CleverReach");
+        sendCleverReachData();
+    };
 
     ////////////////////////////////////
     // Parameter an Success URL anhängen
@@ -309,10 +328,14 @@ function sendMail () {
     ///////////////////////////////////////////////////////////////////////
     // Öffnen der Success Page nach Absenden (inkl URl Parameter für Email)
     ///////////////////////////////////////////////////////////////////////
-    var newWindow = window.open("", "_blank");
-
-    newWindow.location.href = sucessUrl;
-    };
+    
+    function openSuccess () {
+        if (responseStatusAnmeldung === 200 && responseStatusConfirmation === 200) {
+            console.log("Beide Statusmeldungen positiv");
+            var newWindow = window.open("", "_self");
+            newWindow.location.href = sucessUrl;
+        }}
+};
 
 /////////////////////////////////////////////
 // Funktion: Daten an CleverReach übermitteln
@@ -323,6 +346,7 @@ function sendCleverReachData() {
     if (this.readyState == 4 && this.status == 200) {
         // Antwort des Servers erfolgreich empfangen
         console.log(this.responseText);
+        responseStatusCleverReach = 200;
     }
     };
     xhttp.open("POST", "https://eu.cleverreach.com/f/34217-168874/wcs/", true);
@@ -351,18 +375,18 @@ function uncollapseElement (elementId) {
 // Success Page Script
 /////////////////////////////////////////////
 
-function getEmail () {
-    const userEmail = localStorage.getItem("email");
-    console.log(userEmail);
-}
+// function getEmail () {
+//     const userEmail = localStorage.getItem("email");
+//     console.log(userEmail);
+// }
 
-function getParameters () {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const email = urlParams.get('email');
-    const vorname = urlParams.get('vorname');
-    const titel = urlParams.get('titel');
-    const sportarten = urlParams.get('sportarten');
-    console.log(email + vorname + titel + sportarten);
-}
+// function getParameters () {
+//     const queryString = window.location.search;
+//     const urlParams = new URLSearchParams(queryString);
+//     const email = urlParams.get('email');
+//     const vorname = urlParams.get('vorname');
+//     const titel = urlParams.get('titel');
+//     const sportarten = urlParams.get('sportarten');
+//     console.log(email + vorname + titel + sportarten);
+// }
   

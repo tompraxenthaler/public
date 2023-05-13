@@ -1,6 +1,3 @@
-////////////////////////////////
-// Parameter aus URL extrahieren
-////////////////////////////////
 var parameters = {
     email: "",
     anrede: "",
@@ -45,6 +42,8 @@ var parameters = {
         insertInfomail();
     }
 })();
+
+
 
 //////////////////////////////////////////////////
 // Infomail Template integrieren (wenn kein Optin)
