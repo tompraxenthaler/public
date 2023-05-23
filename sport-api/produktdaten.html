@@ -9,14 +9,73 @@
 </head>
 <body>
     <div class="grid">
-        <aside>
+        <header>
             <form onsubmit="startSearch()">
-            <input type="text" name="ean" id="ean" placeholder="EAN eingeben...">
-            <button type="submit">Produkt suchen</button>
-        </aside>
+                <a onclick="reloadHome()"><h1>ProduktdatenFinder</h1></a>
+                <label for="ean">Beispiel: 4053866556149</label>
+                <input type="text" name="ean" id="ean-input" placeholder="EAN eingeben..." required>
+                <button class="search-button" type="submit">Produkt suchen</button>
+                <div id="no-result" hidden>Die EAN wurde nicht gefunden!</div>
+            </form>
+        </header>
         <main>
-            <div class="result-container">
-
+            <div class="result-container" id="result-container">
+                <div class="col-20-80">
+                    <div class="parameter">Marke</div>
+                    <div class="data" id="marke"></div>
+                    <div class="parameter">Name</div>
+                    <div class="data" id="name"></div>
+                </div>
+                <div class="col-20-30-20-30">
+                    <div class="parameter">Größe</div>
+                    <div class="data" id="size"></div>
+                    <div class="parameter">Geschlecht</div>
+                    <div class="data" id="geschlecht"></div>
+                </div>
+                <div class="col-20-80">
+                    <div class="parameter">Farbe</div>
+                    <div class="data" id="farbe"></div>
+                </div>
+                <div class="col-20-30-20-30">
+                    <div class="parameter">Artikelnummer</div>
+                    <div class="data" id="artnr"></div>
+                    <div class="parameter">EAN</div>
+                    <div class="data" id="ean"></div>
+                </div>
+                <div class="col-20-80">
+                    <div class="parameter">UVP</div>
+                    <div class="data" id="uvp"></div>
+                </div>
+                <div class="col-20-30-20-30">
+                    <div class="parameter">Gewicht in Gramm</div>
+                    <div class="data" id="gewichtGramm"></div>
+                    <div class="parameter">Gewicht in Kilogramm</div>
+                    <div class="data" id="gewichtKG"></div>
+                </div>
+                <div class="col-20-80">
+                    <div class="parameter">Langtext</div>
+                    <div class="data" id="langtext"></div>
+                    <div class="parameter">Stichpunkte</div>
+                    <div class="data"><div id="bullets"></div></div>
+                    <div class="parameter">Bilder</div>
+                    <div class="data" id="bilder-container">
+                        <div class="bild" id="bild0"></div>
+                        <div class="bild" id="bild1"></div>
+                        <div class="bild" id="bild2"></div>
+                        <div class="bild" id="bild3"></div>
+                        <div class="bild" id="bild4"></div>
+                        <div class="bild" id="bild5"></div>
+                        <div class="bild" id="bild6"></div>
+                        <div class="bild" id="bild7"></div>
+                        <div class="bild" id="bild8"></div>
+                        <div class="bild" id="bild9"></div>
+                    </div>
+                    <div class="parameter">Varianten</div>
+                    <div class="data">
+                        <div><button class="small-button" onclick="searchVariants();">Nach Varianten suchen</button></div>
+                        <div id="variants-container"></div>
+                    </div>
+                </div> 
             </div>
         </main>
     </div>
