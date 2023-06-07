@@ -7,6 +7,7 @@ var parameters = {
     nachname: "",
     anzeigename: "",
     email: "",
+    optin: "",
     strasse: "",
     hausnummer: "",
     adresszusatz: "",
@@ -22,7 +23,6 @@ var parameters = {
     kundenkarte: "",
 };
 var geschlecht = "";
-var optin = "";
 var sportartCheckboxes = "";
 var sportartenSelected = "";
 
@@ -31,11 +31,20 @@ var sportartenSelected = "";
 /////////////////////////////////////////////////
 htmlForm.addEventListener("input", () => {
     if (htmlForm.checkValidity()) {
-      formButton.disabled = false;
+        document.getElementById("formButton").className = "formButtonActive";
     } else {
-      formButton.disabled = true;
+        document.getElementById("formButton").className = "";
     }
   });
+
+// Alt: Button Aktivierung wenn Form komplett ausgefüllt
+// htmlForm.addEventListener("input", () => {
+//     if (htmlForm.checkValidity()) {
+//       formButton.disabled = false;
+//     } else {
+//       formButton.disabled = false;  // HIER "TRUE" EINFÜGEN!!!!!!!
+//     }
+//   });
 
 /////////////////////////////////////////////////
 // Bei Familie/Firma/Verein Vorname vordefinieren
@@ -234,8 +243,8 @@ function sendMail () {
     }
 
     console.log(parameters);
-    optin = document.getElementById("optin");
-    console.log("Opt-In:" + optin.checked);
+    parameters.optin = document.getElementById("optin").checked;
+    console.log("Opt-In:" + parameters.optin);
 
     ////////////////////////////////////////////
     // EmailJS trigger
@@ -280,7 +289,7 @@ function sendMail () {
     ////////////////////////////////////////////
     // Bei Opt-in CleverReach Funktion ausführen 
     ////////////////////////////////////////////
-    if (optin.checked) {
+    if (parameters.optin) {
         console.log("Send to CleverReach");
         sendCleverReachData();
     };
@@ -290,7 +299,7 @@ function sendMail () {
     ////////////////////////////////////
     var sucessUrl = "success.html" + "?email=" + parameters.email + "&vorname=" + parameters.vorname + "&nachname=" + parameters.nachname + "&anrede=" + parameters.anrede + "&geschlecht=" + geschlecht 
     + "&titel=" + parameters.titel + "&plz=" + parameters.plz + "&ort=" + parameters.ort + "&land=" + parameters.land + "&tag=" + parameters.tag + "&monat=" + parameters.monat + "&jahr=" + parameters.jahr
-    + "&sportarten=" + sportartenSelected + "&optin=" + optin.checked;
+    + "&sportarten=" + sportartenSelected + "&optin=" + parameters.optin;
 
     ///////////////////////////
     // Leeren der Input-Felder 
@@ -324,6 +333,7 @@ function sendMail () {
     }
     sportartenSelected = "";
     document.getElementById("consent").checked = false;
+    document.getElementById("formButton").className = "";
 
     ///////////////////////////////////////////////////////////////////////
     // Öffnen der Success Page nach Absenden (inkl URl Parameter für Email)
@@ -368,25 +378,5 @@ function collapseElement (elementId) {
 
 function uncollapseElement (elementId) {
     document.getElementById(elementId).className = "uncollapse";
- }
-
-
-/////////////////////////////////////////////
-// Success Page Script
-/////////////////////////////////////////////
-
-// function getEmail () {
-//     const userEmail = localStorage.getItem("email");
-//     console.log(userEmail);
-// }
-
-// function getParameters () {
-//     const queryString = window.location.search;
-//     const urlParams = new URLSearchParams(queryString);
-//     const email = urlParams.get('email');
-//     const vorname = urlParams.get('vorname');
-//     const titel = urlParams.get('titel');
-//     const sportarten = urlParams.get('sportarten');
-//     console.log(email + vorname + titel + sportarten);
-// }
+}
   
