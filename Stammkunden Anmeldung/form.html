@@ -58,11 +58,11 @@
             </div>
             <input type="text" name="adresszusatz" id="adresszusatz" placeholder="Adresszusatz">
             <div class="adress-container-city">
-                <input type="number" name="plz" id="plz" class="required" placeholder="PLZ*" required>
+                <input type="number" name="plz" id="plz" class="required" placeholder="PLZ*" autocomplete="postal-code" required>
                 <p></p>
-                <input type="text" name="ort" id="ort" class="required" placeholder="Ort*" required>
+                <input type="text" name="ort" id="ort" class="required" placeholder="Ort*" autocomplete="address-level2" required>
             </div>
-            <select id="land" name="land" class="required" required>
+            <select id="land" name="land" class="required" autocomplete="country" required>
                 <option value="" selected disabled>Land*</option>
                 <option value="Deutschland">Deutschland</option>
                 <option value="Österreich">&Ouml;sterreich</option>
