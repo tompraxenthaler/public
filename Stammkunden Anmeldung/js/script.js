@@ -47,6 +47,24 @@ htmlForm.addEventListener("input", () => {
 //   });
 
 /////////////////////////////////////////////////
+// Bei Klick auf inaktiven Button PopUp anzeigen
+/////////////////////////////////////////////////
+document.getElementById("formButton").addEventListener("click", () => {
+    if (htmlForm.checkValidity()) {
+
+    } else {
+        console.log("buttonPopUp verändern!");
+        document.getElementById("buttonPopUp").style.display = "block";
+        setTimeout(hidePopUp, 3000);
+
+        function hidePopUp () {
+            console.log("hidePopUp");
+            document.getElementById("buttonPopUp").style.display = "none";
+        }
+    }
+});
+
+/////////////////////////////////////////////////
 // Bei Familie/Firma/Verein Vorname vordefinieren
 /////////////////////////////////////////////////
 document.getElementById("anrede").addEventListener("input", () => {
