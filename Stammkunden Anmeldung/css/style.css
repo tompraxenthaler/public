@@ -298,7 +298,7 @@ input[type="checkbox"]{
     bottom: 0;
     height: 50px;
     width: 600px;
-    background-color: #4a8bc2;
+    background-color: #ccc;
     color: #fff;
     font-size: 14px;
     border: 0;
@@ -314,14 +314,24 @@ input[type="checkbox"]{
     }
 }
 #formButton:hover {
-    background-color: #5999d1;
+    background-color: #aaa8a8;
 }
 #formButton:active {
+    background-color: #dfdfdf;
+}
+
+#formButton.formButtonActive {
+    background-color: #4a8bc2;
+}
+#formButton.formButtonActive:hover {
+    background-color: #5999d1;
+}
+#formButton.formButtonActive:active {
     background-color: #65a4dc;
 }
-#formButton:disabled {
-    background-color: #cccccc;
-    cursor:not-allowed;
+
+#buttonPopUp {
+    display: none;
 }
 
 .ctaButton {
@@ -421,6 +431,7 @@ input[type="checkbox"]{
     margin-bottom: 10px;
     color: grey;
     font-size: 11pt;
+    transition: all 5s ease-in-out;
 }
 
 .closeElement {
