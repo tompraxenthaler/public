@@ -260,8 +260,8 @@ function sendMail () {
             parameters.anzeigename = parameters.vorname;
     }
 
-    console.log(parameters);
     parameters.optin = document.getElementById("optin").checked;
+    console.log(parameters);
     console.log("Opt-In:" + parameters.optin);
 
     ////////////////////////////////////////////
