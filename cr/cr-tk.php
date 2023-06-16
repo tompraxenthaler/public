@@ -1,6 +1,6 @@
 // Values from your OAuth app. You create ONE for a page/plugin/service.
 $clientid     = "wK1pK77pMo";
-$clientsecret = "pO2DTEZva5GAQahBhqHXQrDkTtdr00Bx";
+$clientsecret = "secret";
 
 // The official CleverReach URL, no need to change this.
 $token_url = "https://rest.cleverreach.com/oauth/token.php";
